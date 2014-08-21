@@ -1,0 +1,22 @@
+{
+	"name": "werx/email",
+	"type": "library",
+	"description": "Composer-friendly wrapper for CI Email.",
+    "license": "OSL 3.0",
+	"authors":[
+		{
+			"name": "Josh Moody",
+			"email": "josh@moody.io"
+		}
+	],
+	    
+    "require": {
+    	"php": ">= 5.4"
+    },
+
+	"autoload":	{
+		"psr-4": {
+			"werx\\Email\\": "src/"
+		}
+	}
+}
