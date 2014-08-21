@@ -2,6 +2,7 @@
 	"name": "werx/email",
 	"type": "library",
 	"description": "Composer-friendly wrapper for CI Email.",
+    "homepage": "https://github.com/werx/email",
     "license": "OSL 3.0",
 	"authors":[
 		{
