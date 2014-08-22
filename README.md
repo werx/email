@@ -40,6 +40,6 @@ require 'vendor/autoload.php';
 ## Testing
 There are unit tests available for this package. To run them, you must have [MailCatcher](http://mailcatcher.me/) installed and running.
 
-```
-vendor/bin/phpunit
+``` bash
+$ vendor/bin/phpunit
 ```
