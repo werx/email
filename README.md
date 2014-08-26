@@ -1,6 +1,6 @@
 # werx/email
 
-This is a port of the [CodeIgniter](https://github.com/EllisLab/CodeIgniter/) email class updated to work outside of CodeIgniter.
+Use [CodeIgniter's](https://github.com/EllisLab/CodeIgniter/) email library outside CodeIgniter.
 
 Full Documentation at <http://ellislab.com/codeigniter/user-guide/libraries/email.html>
 
