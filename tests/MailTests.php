@@ -67,6 +67,26 @@ class MailTests extends \PHPUnit_Framework_TestCase
 		}
 	}
 
+	public function testCanParseSender()
+	{
+		$email = new Email\Message($this->config);
+
+		$email->from('Foo Bar <foo@bar.com>');
+		$this->assertEquals('"Foo Bar" <foo@bar.com>', $email->getHeader('from'));
+
+		$email->from('Foo Bar<foo@bar.com>');
+		$this->assertEquals('"Foo Bar" <foo@bar.com>', $email->getHeader('from'));
+
+		$email->from('foo@bar.com', 'Foo Bar');
+		$this->assertEquals('"Foo Bar" <foo@bar.com>', $email->getHeader('from'));
+
+		$email->from('foo@bar.com', '');
+		$this->assertEquals(' <foo@bar.com>', $email->getHeader('from'));
+
+		$email->from('foo@bar.com', ' ');
+		$this->assertEquals(' <foo@bar.com>', $email->getHeader('from'));
+	}
+
 	public function setUp()
 	{
 		// clean emails between tests

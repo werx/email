@@ -484,9 +484,20 @@ class Message {
 	 */
 	public function from($from, $name = '', $return_path = NULL)
 	{
+		$original_from = $from;
+		$name = trim($name);
+
 		if (preg_match('/\<(.*)\>/', $from, $match))
 		{
 			$from = $match[1];
+		}
+
+		if (empty($name))
+		{
+			if (preg_match('/(.*)\<.*\>/', $original_from, $match))
+			{
+				$name = trim($match[1]);
+			}
 		}
 
 		if ($this->validate)
@@ -765,6 +776,33 @@ class Message {
 	public function set_header($header, $value)
 	{
 		$this->_headers[$header] = str_replace(array("\n", "\r"), '', $value);
+	}
+
+	/**
+	 * Converts user-agent to User-Agent
+	 *
+	 * @param $header
+	 * @return mixed
+	 */
+	protected function formatHeaderName($header)
+	{
+		return str_replace(' ', '-', ucwords(str_replace('-', ' ', strtolower($header))));
+	}
+
+	public function getHeader($header)
+	{
+		$header = $this->formatHeaderName($header);
+
+		if (array_key_exists($header, $this->_headers)){
+			return $this->_headers[$header];
+		} else {
+			return null;
+		}
+	}
+
+	public function getHeaders()
+	{
+		return $this->_headers;
 	}
 
 	// --------------------------------------------------------------------
