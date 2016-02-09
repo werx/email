@@ -7,7 +7,7 @@ Full Documentation at <http://ellislab.com/codeigniter/user-guide/libraries/emai
 ## Usage
 
 ```php
-$email = new \werx\email\Message();
+$email = new \werx\Email\Message();
 $email->clear();
 $email->from('me@example.com', 'My Name');
 $email->to('you@example.com');
