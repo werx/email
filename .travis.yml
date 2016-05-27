@@ -10,7 +10,8 @@ php:
 before_script:
   - composer self-update
   - composer install
-  - gem install mailcatcher
+  - gem install mime-types --version "< 3"
+  - gem install --conservative mailcatcher
   - mailcatcher
 script:
   - phpunit --coverage-text
