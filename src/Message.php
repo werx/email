@@ -2098,15 +2098,22 @@ class Message {
 	protected function _send_data($data)
 	{
 		$data .= $this->newline;
-		for ($written = 0, $length = strlen($data); $written < $length; $written += $result)
+		$written = 0;
+		for ($length = strlen($data); $written < $length; $written += $result)
 		{
-			if (($result = fwrite($this->_smtp_connect, substr($data, $written))) === FALSE)
+			$result = fwrite($this->_smtp_connect, substr($data, $written));
+			if ($result === 0)
 			{
 				break;
 			}
+			else if($result === FALSE)
+			{
+				$this->_set_error_message('lang:email_smtp_data_failure', $data);
+				return FALSE;
+			}
 		}
 
-		if ($result === FALSE)
+		if ($written < $length && substr($data, 0, 4) !== 'QUIT')
 		{
 			$this->_set_error_message('lang:email_smtp_data_failure', $data);
 			return FALSE;
